@@ -142,9 +142,10 @@ export const settingsProvider = (function () {
      * Loads general settings section
      */
     const loadGeneralSettingsSection = function () {
-        const enabledFilterIds = collectEnabledFilterIds();
+        // const enabledFilterIds = collectEnabledFilterIds();
         // TODO update self search settings on filter status change
-        const allowAcceptableAds = enabledFilterIds.indexOf(utils.filters.ids.SEARCH_AND_SELF_PROMO_FILTER_ID) >= 0;
+        // const allowAcceptableAds = enabledFilterIds.indexOf(utils.filters.ids.SEARCH_AND_SELF_PROMO_FILTER_ID) >= 0;
+        const allowAcceptableAds = true;
 
         const section = {
             'general-settings': {

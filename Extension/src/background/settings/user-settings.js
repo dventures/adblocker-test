@@ -18,7 +18,7 @@
 /* eslint-disable max-len */
 
 import { utils } from '../utils/common';
-import { prefs } from '../prefs';
+// import { prefs } from '../prefs';
 import { listeners } from '../notifier';
 import { log } from '../../common/log';
 import { localStorage } from '../storage';
@@ -87,22 +87,22 @@ export const settings = (() => {
                 // Initialize default properties
                 const defaults = Object.fromEntries(Object.keys(settings).map(name => ([name, false])));
 
-                defaults[settings.DISABLE_SHOW_ADGUARD_PROMO_INFO] = (!browserUtils.isWindowsOs() && !browserUtils.isMacOs()) || browserUtils.isEdgeBrowser();
+                defaults[settings.DISABLE_SHOW_ADGUARD_PROMO_INFO] = true;
                 defaults[settings.DISABLE_SAFEBROWSING] = true;
                 defaults[settings.DISABLE_COLLECT_HITS] = true;
                 defaults[settings.DEFAULT_ALLOWLIST_MODE] = true;
                 defaults[settings.ALLOWLIST_ENABLED] = true;
-                defaults[settings.USE_OPTIMIZED_FILTERS] = prefs.mobile;
+                defaults[settings.USE_OPTIMIZED_FILTERS] = false;
                 defaults[settings.DISABLE_DETECT_FILTERS] = false;
                 defaults[settings.DISABLE_SHOW_APP_UPDATED_NOTIFICATION] = false;
                 defaults[settings.FILTERS_UPDATE_PERIOD] = DEFAULT_FILTERS_UPDATE_PERIOD;
                 defaults[settings.DISABLE_STEALTH_MODE] = true;
-                defaults[settings.HIDE_REFERRER] = true;
-                defaults[settings.HIDE_SEARCH_QUERIES] = true;
-                defaults[settings.SEND_DO_NOT_TRACK] = true;
+                defaults[settings.HIDE_REFERRER] = false;
+                defaults[settings.HIDE_SEARCH_QUERIES] = false;
+                defaults[settings.SEND_DO_NOT_TRACK] = false;
                 defaults[settings.BLOCK_CHROME_CLIENT_DATA] = !!browserUtils.isChromeBrowser();
                 defaults[settings.BLOCK_WEBRTC] = false;
-                defaults[settings.SELF_DESTRUCT_THIRD_PARTY_COOKIES] = true;
+                defaults[settings.SELF_DESTRUCT_THIRD_PARTY_COOKIES] = false;
                 defaults[settings.SELF_DESTRUCT_THIRD_PARTY_COOKIES_TIME] = DEFAULT_THIRD_PARTY_COOKIES_SELF_DESTRUCT_MIN;
                 defaults[settings.SELF_DESTRUCT_FIRST_PARTY_COOKIES] = false;
                 defaults[settings.SELF_DESTRUCT_FIRST_PARTY_COOKIES_TIME] = DEFAULT_FIRST_PARTY_COOKIES_SELF_DESTRUCT_MIN;

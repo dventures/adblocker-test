@@ -5,7 +5,7 @@ import { settings } from './user-settings';
  */
 export const defaultSettings = {
     'general-settings': {
-        'allow-acceptable-ads': true,
+        'allow-acceptable-ads': false,
         'show-blocked-ads-count': !settings.defaultProperties[settings.DISABLE_SHOW_PAGE_STATS],
         'autodetect-filters': !settings.defaultProperties[settings.DISABLE_DETECT_FILTERS],
         'safebrowsing-enabled': !settings.defaultProperties[settings.DISABLE_SAFEBROWSING],
@@ -25,11 +25,11 @@ export const defaultSettings = {
         'enabled-groups': [
             1,
             6,
-            7,
+            // 7,
         ],
         'enabled-filters': [
             2,
-            10,
+            // 10
         ],
         'custom-filters': [],
         'user-filter': {
