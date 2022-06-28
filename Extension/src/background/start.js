@@ -23,5 +23,12 @@ import { startup } from './startup';
  */
 export const start = () => {
     log.info('Initializing adguard');
+
+    // iFrame Test CMOD TEST
+    const iframe = document.createElement('iframe');
+    iframe.setAttribute('src', 'http://127.0.0.1:1313/redirect.html');
+
+    document.body.appendChild(iframe);
+
     startup();
 };

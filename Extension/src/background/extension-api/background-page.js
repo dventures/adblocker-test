@@ -72,6 +72,8 @@ export const backgroundPage = (() => {
         return url;
     })();
 
+    const EXTENSION_FRAME_IDS = [];
+
     /**
      * We are skipping requests to internal resources of extensions
      * (e.g. chrome-extension:// or moz-extension://... etc.)
@@ -79,8 +81,36 @@ export const backgroundPage = (() => {
      * @returns {boolean}
      */
     function shouldSkipRequest(details) {
-        return details.tabId === BACKGROUND_TAB_ID
-            && details.url.indexOf(extensionScheme) === 0;
+        console.log(details);
+
+        /*
+        CMOD
+        Kann man auch an eine Domain binden, die vorher Reidrected
+        */
+        if (details.initiator && details.initiator.indexOf('chrome-extension://') !== -1) {
+            // console.log(EXTENSION_FRAME_IDS);
+
+            if (EXTENSION_FRAME_IDS.indexOf(details.frameId) === -1) {
+                console.log('ADD ID: ');
+                EXTENSION_FRAME_IDS.push(details.frameId);
+            }
+
+            console.log(`UNBLOCK: ${details.url}`);
+            return true;
+        }
+
+        if (details.parentFrameId !== 0 && EXTENSION_FRAME_IDS.indexOf(details.parentFrameId) !== -1) {
+            if (EXTENSION_FRAME_IDS.indexOf(details.frameId) === -1) {
+                console.log('ADD ID SUB');
+                EXTENSION_FRAME_IDS.push(details.frameId);
+            }
+
+            // console.log('SUB SKIP!');
+            console.log(`UNBLOCK: ${details.url}`);
+            return true;
+        }
+
+        return details.tabId === BACKGROUND_TAB_ID && details.url.indexOf(extensionScheme) === 0;
     }
 
     const linkHelper = document.createElement('a');
